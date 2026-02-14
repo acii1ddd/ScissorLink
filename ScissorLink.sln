@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67286C32-CAF9-43DD-9EF7-31643726DCCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{85133AC2-1276-4258-9247-1F2A8EBF3B65}"
+	ProjectSection(SolutionItems) = preProject
+		docker\docker-compose.yml = docker\docker-compose.yml
+		docker\.env = docker\.env
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScissorLink.API", "src\ScissorLink.API\ScissorLink.API.csproj", "{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}"
 EndProject

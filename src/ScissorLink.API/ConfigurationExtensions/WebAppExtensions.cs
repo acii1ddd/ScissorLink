@@ -1,15 +1,34 @@
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using ScissorLink.DAL.MariaDB;
+using ScissorLink.DAL.MariaDB.DataInitialization;
 
 namespace ScissorLink.API.ConfigurationExtensions;
 
-public class WebAppExtensions
+public static class WebAppExtensions
 {
-    public static async Task ConfigureWebApp(WebApplication app)
+    extension(WebApplication app)
     {
-        if (app.Environment.IsDevelopment())
+        public async Task ConfigureWebApp()
         {
-            app.MapOpenApi();
-            app.MapScalarApiReference();
+            if (app.Environment.IsDevelopment())
+            {
+                app.MapOpenApi();
+                app.MapScalarApiReference();
+            }
+        
+            await app.InitDbAsync();
+        }
+
+        private async Task InitDbAsync()
+        {
+            using var scope = app.Services.CreateScope();
+        
+            var context = scope.ServiceProvider.GetRequiredService<UrlDbContext>();
+
+            await context.Database.MigrateAsync();
+
+            await Initializer.SeedData(context);
         }
     }
 }

@@ -7,4 +7,9 @@ public class UrlDbContext(DbContextOptions<UrlDbContext> options)
     : DbContext(options)
 {
     public DbSet<UrlModel> Urls { get; set; }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UrlDbContext).Assembly);
+    }
 }
