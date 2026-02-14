@@ -1,0 +1,7 @@
+@ScissorLink.API_HostAddress = http://localhost:5073
+@ScissorLink = variable value
+
+GET {{ScissorLink.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

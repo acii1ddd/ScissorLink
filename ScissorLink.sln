@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67286C32-CAF9-43DD-9EF7-31643726DCCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{85133AC2-1276-4258-9247-1F2A8EBF3B65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScissorLink.API", "src\ScissorLink.API\ScissorLink.API.csproj", "{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E} = {67286C32-CAF9-43DD-9EF7-31643726DCCD}
+	EndGlobalSection
+EndGlobal
