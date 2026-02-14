@@ -1,4 +1,4 @@
-using Scalar.AspNetCore;
+using ScissorLink.API.ConfigurationExtensions;
 
 namespace ScissorLink.API;
 
@@ -8,16 +8,15 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddOpenApi();
-
+        builder.Services.AddOpenApiSpec();
+        
+        var connectionString = builder.Configuration.GetConnectionString("MariaConnection")
+            ?? throw new NullReferenceException("Maria connection string not found");
+        
+        builder.Services.AddMariaDb(connectionString);
+        
         var app = builder.Build();
-
-        if (app.Environment.IsDevelopment())
-        {
-            app.MapOpenApi();
-            app.MapScalarApiReference();
-        }
-
+        
         await app.RunAsync();
     }
 }

@@ -11,4 +11,8 @@
         <PackageReference Include="Scalar.AspNetCore" Version="2.12.40" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ScissorLink.BLL\ScissorLink.BLL.csproj" />
+    </ItemGroup>
+
 </Project>

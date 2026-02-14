@@ -6,6 +6,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{85133A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScissorLink.API", "src\ScissorLink.API\ScissorLink.API.csproj", "{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScissorLink.DAL.MariaDB", "src\ScissorLink.DAL.MariaDB\ScissorLink.DAL.MariaDB.csproj", "{BBBFA2AE-E875-40E1-91CC-CBB4D3CEE2C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScissorLink.BLL", "src\ScissorLink.BLL\ScissorLink.BLL.csproj", "{60AD1AD9-9E53-48D8-A467-8208B1B035AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,8 +20,18 @@ Global
 		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBBFA2AE-E875-40E1-91CC-CBB4D3CEE2C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBFA2AE-E875-40E1-91CC-CBB4D3CEE2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBFA2AE-E875-40E1-91CC-CBB4D3CEE2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBFA2AE-E875-40E1-91CC-CBB4D3CEE2C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60AD1AD9-9E53-48D8-A467-8208B1B035AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60AD1AD9-9E53-48D8-A467-8208B1B035AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60AD1AD9-9E53-48D8-A467-8208B1B035AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60AD1AD9-9E53-48D8-A467-8208B1B035AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{49FF0D20-0479-4A2E-ACEE-47E7052C7F7E} = {67286C32-CAF9-43DD-9EF7-31643726DCCD}
+		{BBBFA2AE-E875-40E1-91CC-CBB4D3CEE2C1} = {67286C32-CAF9-43DD-9EF7-31643726DCCD}
+		{60AD1AD9-9E53-48D8-A467-8208B1B035AF} = {67286C32-CAF9-43DD-9EF7-31643726DCCD}
 	EndGlobalSection
 EndGlobal
