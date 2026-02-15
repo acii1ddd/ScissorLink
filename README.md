@@ -64,7 +64,7 @@ cp .env.example .env  # Configure your credentials
 docker compose up -d --build
 ```
 
-The API Documentation will be available at `https://localhost:7373/scalar` 
+The API Documentation will be available at `http://localhost:7373/scalar` 
 (and frontend `http://localhost:7373/index.html`).
 
 ## API Endpoints
