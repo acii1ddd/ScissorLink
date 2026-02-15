@@ -1,6 +1,6 @@
 using ScissorLink.DAL.MariaDB.Models;
 
-namespace ScissorLink.BLL.Services;
+namespace ScissorLink.BLL.Interfaces;
 
 public interface IUrlService
 {

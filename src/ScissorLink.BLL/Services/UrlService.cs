@@ -1,9 +1,12 @@
-﻿using ScissorLink.DAL.MariaDB.Models;
+﻿using ScissorLink.BLL.Interfaces;
+using ScissorLink.DAL.MariaDB.Models;
 using ScissorLink.DAL.MariaDB.Repositories;
 
 namespace ScissorLink.BLL.Services;
 
-public class UrlService(IUrlRepository urlRepository) : IUrlService
+public class UrlService(
+    IUrlRepository urlRepository, 
+    IShortCodeGeneratorService generator) : IUrlService
 {
     public async Task<IEnumerable<UrlModel>> GetAllUrls(CancellationToken ct)
     {
@@ -66,8 +69,7 @@ public class UrlService(IUrlRepository urlRepository) : IUrlService
         if (!Uri.IsWellFormedUriString(longUrl, UriKind.Absolute))
             throw new ArgumentException("Invalid URL format");
 
-        // algoritm
-        const string shortedUrl = "1234567890";
+        var shortedUrl = generator.Generate();
         
         var url = new UrlModel
         {

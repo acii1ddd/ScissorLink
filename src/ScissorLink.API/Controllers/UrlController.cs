@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ScissorLink.API.Dtos;
-using ScissorLink.BLL.Services;
+using ScissorLink.BLL.Interfaces;
 
 namespace ScissorLink.API.Controllers;
 
@@ -38,7 +38,25 @@ public class UrlController(IUrlService urlService) : ControllerBase
     {
         var url = await urlService.AddUrlAsync(request.LongUrl, ct);
 
-        return CreatedAtAction(nameof(GetUrl), new { id = url.Id }, url);
+        var baseUrl = $"{Request.Scheme}://{Request.Host}";
+        
+        var response = new AddUrlResponse
+        {
+            Id = url.Id,
+            ShortUrl = url.ShortUrl,
+            LongUrl = url.LongUrl,
+            CreatedAt = url.CreatedAt,
+            ClickCount = url.ClickCount,
+            Links =
+            [
+                new Link { Rel = "self", Href = $"{baseUrl}/api/urls/{url.Id}", Method = "GET" },
+                new Link { Rel = "redirect", Href = $"{baseUrl}/api/go/{url.ShortUrl}", Method = "GET" },
+                new Link { Rel = "delete", Href = $"{baseUrl}/api/urls/{url.Id}", Method = "DELETE" },
+                new Link { Rel = "update", Href = $"{baseUrl}/api/urls/{url.Id}", Method = "PUT" }
+            ]
+        };
+        
+        return CreatedAtAction(nameof(GetUrl), new { id = url.Id }, response);
     }
 
     [HttpGet("{id:guid}")]
