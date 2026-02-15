@@ -15,7 +15,7 @@ public class UrlService(
         return urls;
     }
 
-    public async Task<UrlModel> GetUrlById(Guid id, CancellationToken ct)
+    public async Task<UrlModel?> GetUrlById(Guid id, CancellationToken ct)
     {
         var url = await urlRepository.GetByIdAsync(id, ct);
 
@@ -82,6 +82,22 @@ public class UrlService(
         
         await urlRepository.AddAsync(url, ct);
 
+        return url;
+    }
+
+    public async Task<UrlModel> GetByShortUrlAsync(string shortUrl, CancellationToken ct)
+    {
+        var url = await urlRepository.GetByShortUrlAsync(shortUrl, ct);
+
+        if (url is null)
+        {
+            throw new KeyNotFoundException($"URL with shortUrl {shortUrl} not found");
+        }
+
+        url.ClickCount++;
+        
+        await urlRepository.UpdateAsync(url, ct);
+        
         return url;
     }
 }

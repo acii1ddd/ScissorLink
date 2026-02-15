@@ -38,4 +38,10 @@ public class UrlRepository(UrlDbContext context) : IUrlRepository
         
         await context.SaveChangesAsync(ct);
     }
+
+    public async Task<UrlModel?> GetByShortUrlAsync(string shortUrl, CancellationToken сt)
+    {
+        return await context.Urls
+            .FirstOrDefaultAsync(x => x.ShortUrl == shortUrl, сt);
+    }
 }

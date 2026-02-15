@@ -13,4 +13,6 @@ public interface IUrlRepository
     public Task DeleteAsync(UrlModel url, CancellationToken ct);
     
     public Task AddAsync(UrlModel url, CancellationToken ct);
+    
+    public Task<UrlModel?> GetByShortUrlAsync(string shortUrl, CancellationToken сt);
 }
