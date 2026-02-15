@@ -12,15 +12,18 @@ public class UrlService(IUrlRepository urlRepository) : IUrlService
         return urls;
     }
 
-    public Task<UrlModel> GetUrlById(Guid id, CancellationToken ct)
+    public async Task<UrlModel> GetUrlById(Guid id, CancellationToken ct)
     {
-        throw new NotImplementedException();
-    }
+        var url = await urlRepository.GetByIdAsync(id, ct);
 
-    public Task<UrlModel> GetUrlById(CancellationToken ct)
-    {
-        throw new NotImplementedException();
+        if (url is null)
+        {
+            throw new KeyNotFoundException($"URL with id {id} not found");
+        }
+        
+        return url;
     }
+    
     public async Task<UrlModel> UpdateUrl(Guid id, string longUrl, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(longUrl))
@@ -53,5 +56,30 @@ public class UrlService(IUrlRepository urlRepository) : IUrlService
         }
 
         await urlRepository.DeleteAsync(url, ct);
+    }
+
+    public async Task<UrlModel> AddUrlAsync(string longUrl, CancellationToken ct)
+    {
+        if (string.IsNullOrWhiteSpace(longUrl))
+            throw new ArgumentException("URL cannot be empty");
+        
+        if (!Uri.IsWellFormedUriString(longUrl, UriKind.Absolute))
+            throw new ArgumentException("Invalid URL format");
+
+        // algoritm
+        const string shortedUrl = "1234567890";
+        
+        var url = new UrlModel
+        {
+            Id = Guid.NewGuid(),
+            LongUrl = longUrl,
+            ShortUrl = shortedUrl,
+            CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow),
+            ClickCount = 0
+        };
+        
+        await urlRepository.AddAsync(url, ct);
+
+        return url;
     }
 }

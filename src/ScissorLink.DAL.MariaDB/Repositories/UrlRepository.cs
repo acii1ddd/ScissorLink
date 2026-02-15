@@ -31,4 +31,11 @@ public class UrlRepository(UrlDbContext context) : IUrlRepository
         
         return context.SaveChangesAsync(ct);
     }
+
+    public async Task AddAsync(UrlModel url, CancellationToken ct)
+    {
+        await context.Urls.AddAsync(url, ct);
+        
+        await context.SaveChangesAsync(ct);
+    }
 }

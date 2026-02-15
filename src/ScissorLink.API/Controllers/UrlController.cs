@@ -32,4 +32,20 @@ public class UrlController(IUrlService urlService) : ControllerBase
 
         return NoContent();
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> AddUrl([FromBody] AddUrlRequest request, CancellationToken ct)
+    {
+        var url = await urlService.AddUrlAsync(request.LongUrl, ct);
+
+        return CreatedAtAction(nameof(GetUrl), new { id = url.Id }, url);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetUrl(Guid id, CancellationToken ct)
+    {
+        var url = await urlService.GetUrlById(id, ct);
+
+        return Ok(url);
+    }
 }

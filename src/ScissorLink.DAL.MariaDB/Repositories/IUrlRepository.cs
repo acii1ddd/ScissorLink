@@ -11,4 +11,6 @@ public interface IUrlRepository
     public Task UpdateAsync(UrlModel url, CancellationToken ct);
     
     public Task DeleteAsync(UrlModel url, CancellationToken ct);
+    
+    public Task AddAsync(UrlModel url, CancellationToken ct);
 }
