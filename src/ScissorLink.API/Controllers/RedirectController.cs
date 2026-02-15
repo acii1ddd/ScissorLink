@@ -4,7 +4,7 @@ using ScissorLink.BLL.Interfaces;
 namespace ScissorLink.API.Controllers;
 
 [ApiController]
-[Route("/api/go/")]
+[Route("go")]
 public class RedirectController(IUrlService urlService) 
     : ControllerBase
 {

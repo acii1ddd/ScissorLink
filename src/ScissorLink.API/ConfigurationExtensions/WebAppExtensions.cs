@@ -16,8 +16,17 @@ public static class WebAppExtensions
                 app.MapOpenApi();
                 app.MapScalarApiReference();
             }
-
+            
+            app.UseStaticFiles();
+            app.UseRouting();
             app.MapControllers();
+            
+            app.MapGet("/", context =>
+            {
+                context.Response.Redirect("/index.html");
+                return Task.CompletedTask;
+            });
+            
             await app.InitDbAsync();
         }
 

@@ -24,7 +24,7 @@ public class Initializer
         var url1 = new UrlModel
         {
             Id = Guid.NewGuid(),
-            LongUrl = "https://www.youtube.com/",
+            LongUrl = "https://www.youtube.com/watch?v=QSNNj4DCifA",
             ShortUrl = "abc123",
             CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-5)),
             ClickCount = 0
@@ -33,7 +33,7 @@ public class Initializer
         var url2 = new UrlModel
         {
             Id = Guid.NewGuid(),
-            LongUrl = "https://github.com/dotnet/aspnetcore",
+            LongUrl = "https://www.youtube.com/watch?v=WFbYZk_4Q5M&list=WL&index=342",
             ShortUrl = "def456",
             CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-3)),
             ClickCount = 0
