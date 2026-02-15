@@ -27,6 +27,9 @@ public static class DependencyInjection
         public IServiceCollection AddOpenApiSpec()
         {
             services.AddOpenApi();
+
+            services.AddControllers();
+            
             return services;
         }
     }

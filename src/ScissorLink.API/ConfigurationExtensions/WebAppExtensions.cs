@@ -16,7 +16,8 @@ public static class WebAppExtensions
                 app.MapOpenApi();
                 app.MapScalarApiReference();
             }
-        
+
+            app.MapControllers();
             await app.InitDbAsync();
         }
 

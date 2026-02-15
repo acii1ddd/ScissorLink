@@ -1,10 +1,18 @@
 ﻿using ScissorLink.DAL.MariaDB.Models;
+using ScissorLink.DAL.MariaDB.Repositories;
 
 namespace ScissorLink.BLL.Services;
 
-public class UrlService : IUrlService
+public class UrlService(IUrlRepository urlRepository) : IUrlService
 {
-    public Task<IEnumerable<UrlModel>> GetAllUrls(CancellationToken ct)
+    public async Task<IEnumerable<UrlModel>> GetAllUrls(CancellationToken ct)
+    {
+        var urls = await urlRepository.GetAllUrlsAsync(ct);
+
+        return urls;
+    }
+
+    public Task<UrlModel> GetUrlById(Guid id, CancellationToken ct)
     {
         throw new NotImplementedException();
     }
@@ -13,14 +21,37 @@ public class UrlService : IUrlService
     {
         throw new NotImplementedException();
     }
-
-    public Task<UrlModel> UpdateUrl(string longUrl, CancellationToken ct)
+    public async Task<UrlModel> UpdateUrl(Guid id, string longUrl, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(longUrl))
+            throw new ArgumentException("URL cannot be empty");
+    
+        if (!Uri.IsWellFormedUriString(longUrl, UriKind.Absolute))
+            throw new ArgumentException("Invalid URL format");
+        
+        var url = await urlRepository.GetByIdAsync(id, ct);
+
+        if (url is null)
+        {
+            throw new KeyNotFoundException($"URL with id {id} not found");
+        }
+
+        url.LongUrl = longUrl;
+        
+        await urlRepository.UpdateAsync(url, ct);
+
+        return url;
     }
 
-    public Task<UrlModel> DeleteUrlById(Guid id, CancellationToken ct)
+    public async Task DeleteUrlById(Guid id, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        var url = await urlRepository.GetByIdAsync(id, ct);
+
+        if (url is null)
+        {
+            throw new KeyNotFoundException($"URL with id {id} not found");
+        }
+
+        await urlRepository.DeleteAsync(url, ct);
     }
 }
