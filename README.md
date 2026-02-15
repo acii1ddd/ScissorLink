@@ -13,7 +13,7 @@ A modern, high-performance URL shortener built with .NET 10 and Three-layer arch
 - **Web Interface** — Simple static web UI for quick URL shortening
 
 
-![alt text](image-1.png)
+![alt text](image.png)
 
 
 ## Tech Stack
