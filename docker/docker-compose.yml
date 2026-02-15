@@ -9,15 +9,37 @@ services:
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     networks:
-      urlsNetwork:
+      - urlsNetwork
     ports:
-        - "3306:3306"
+      - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
-    
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ..
+      dockerfile: src/ScissorLink.API/Dockerfile
+    container_name: scissorlink-api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__MariaConnection=${CONNECTION_STRING}
+    networks:
+      - urlsNetwork
+    ports:
+      - "7373:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
 networks:
   urlsNetwork:
-     driver: bridge
-     
+    driver: bridge
+
 volumes:
   mariadb_data:
